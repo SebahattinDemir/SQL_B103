@@ -48,3 +48,23 @@ SELECT Urun_adi,COUNT(isim) FROM manav GROUP BY Urun_adi;
 --3) Alinan kilo miktarina gore musteri sayisi
 SELECT Urun_miktar,COUNT(isim) FROM manav GROUP BY Urun_miktar;
 
+CREATE TABLE personel1(
+	id int,
+	isim varchar(50),
+	sehir varchar(50),  
+	maas int,
+	sirket varchar(20)
+);
+INSERT INTO personel1 VALUES(123456789, 'Ali Yilmaz', 'Istanbul', 5500, 'Honda'); 
+INSERT INTO personel1 VALUES(234567890, 'Veli Sahin', 'Istanbul', 4500, 'Toyota');
+INSERT INTO personel1 VALUES(345678901, 'Mehmet Ozturk', 'Ankara', 3500, 'Honda');
+INSERT INTO personel1 VALUES(456789012, 'Mehmet Ozturk', 'Izmir', 6000, 'Ford');
+INSERT INTO personel1 VALUES(567890123, 'Mehmet Ozturk', 'Ankara', 7000, 'Tofas');
+INSERT INTO personel1 VALUES(456789012, 'Veli Sahin', 'Ankara', 4500, 'Ford');
+INSERT INTO personel1 VALUES(123456710, 'Hatice Sahin', 'Bursa', 4500, 'Honda');
+
+--1) Her sirketin MIN maaslarini eger 4000’den buyukse goster
+SELECT sirket,MIN(maas) FROM personel1 GROUP BY sirket HAVING MIN(maas)>4000;
+
+--Ayni isimdeki kisilerin aldigi toplam gelir 10000 liradan fazla ise ismi  ve toplam maasi gosteren sorgu yaziniz
+SELECT isim,SUM(maas) FROM personel1 GROUP BY isim HAVING SUM(maas)>10000;
